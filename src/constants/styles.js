@@ -4,5 +4,5 @@ export default styles = {
 		"bg-[#2EC4B6] w-[50%] justify-center items-center h-10 rounded-md shadow-md ",
 	BUTTONTEXT: "text-[17px] font-bold text-white",
 	BACKGROUND: "",
-	MAINTEXT: "",
+	MAINTEXT: "shadow-sm text-2xl font-bold text-[#000000] tracking-normal",
 };

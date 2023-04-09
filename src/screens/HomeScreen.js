@@ -65,7 +65,7 @@ export default function HomeScreen() {
 				{/* BUTTONS */}
 				<View
 					className="flex flex-col justify-center items-center gap-5 mt-5
-            w-full"
+           			 w-full"
 				>
 					<TouchableOpacity onPress={signIn} className={`${styles.BUTTON} `}>
 						<Text className={`${styles.BUTTONTEXT}`}>Login</Text>
