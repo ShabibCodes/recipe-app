@@ -4,6 +4,14 @@ import Card from "./Card";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 
 const SearchRow = ({ recipes }) => {
+	// console.log("ROWS", recipes);
+	output = <Text>Loading ...</Text>;
+	if (recipes != null) {
+		output = recipes.map((recipe, index) => (
+			<Card key={index} recipe={recipe} />
+		));
+	}
+
 	return (
 		<View>
 			<View className="px-3 py-2 white shadow ">
@@ -15,7 +23,7 @@ const SearchRow = ({ recipes }) => {
 				<Text className="text-sm italic text-gray-500">desc</Text>
 			</View>
 			<ScrollView
-				className="flex-row space-x-5"
+				className="flex flex-row space-x-5 "
 				horizontal
 				showsHorizontalScrollIndicator={false}
 				contentContainerStyle={{
@@ -23,9 +31,7 @@ const SearchRow = ({ recipes }) => {
 					paddingTop: 12,
 				}}
 			>
-				{recipes.map((recipe, index) => (
-					<Card recipe={recipe} />
-				))}
+				{output}
 			</ScrollView>
 		</View>
 	);

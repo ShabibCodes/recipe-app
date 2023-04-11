@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	ImageBackground,
 	View,
@@ -6,6 +6,7 @@ import {
 	KeyboardAvoidingView,
 	TouchableOpacity,
 	TextInput,
+	SafeAreaView,
 } from "react-native";
 import styles from "../constants/styles";
 import axios from "axios";
@@ -14,36 +15,80 @@ import {
 	MagnifyingGlassIcon,
 	AdjustmentsHorizontalIcon,
 } from "react-native-heroicons/solid";
+import AnimatedLoader from "react-native-animated-loader";
+
 import SearchRow from "../components/SearchRow";
 
 export default function MainScreen() {
 	const image = "../../assets/images/LoginBackground.png";
-	const [data, setData] = useState({});
+	const [data, setData] = useState({ "": "" });
 	const [search, setSearch] = useState("");
+	const [loading, setLoading] = useState(false);
 
-	const getData = (search) => {
+	// Initate
+
+	// const once = async () => {
+	// 	const options = {
+	// 		method: "GET",
+	// 		url: "https://tasty.p.rapidapi.com/recipes/list",
+	// 		params: { from: "0", size: "5", q: "avocado" },
+	// 		headers: {
+	// 			"X-RapidAPI-Key": "9985f9fdb4mshf1a3e10c643c6dap10f203jsnd00492ab6685",
+	// 			"X-RapidAPI-Host": "tasty.p.rapidapi.com",
+	// 		},
+	// 	};
+	// 	// console.log("SEARCH ", search);
+	// 	await axios
+	// 		.request(options)
+	// 		.then(function (response) {
+	// 			console.log("First Time", response.data.results[0].recipes.name);
+	// 			const results = response.data.results;
+	// 			results.array.forEach((element) => {
+	// 				element.recipes.forEach((recipe) => {
+	// 					setData(...data, recipe);
+	// 				});
+	// 			});
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.error(error);
+	// 		});
+	// 	// data.map((recipe, index) => {
+	// 	// 	console.log(index, recipe.name);
+	// 	// });
+	// };
+
+	const getData = async (search) => {
 		const options = {
 			method: "GET",
 			url: "https://tasty.p.rapidapi.com/recipes/list",
-			params: { from: "0", size: "20", q: search },
+			params: { from: "0", size: "4", q: "avocado" },
 			headers: {
-				"X-RapidAPI-Key": "5563fa0f6fmsh8723e3397c603a6p10ca39jsn2550b43a59ad",
+				"X-RapidAPI-Key": "9985f9fdb4mshf1a3e10c643c6dap10f203jsnd00492ab6685",
 				"X-RapidAPI-Host": "tasty.p.rapidapi.com",
 			},
 		};
-		// console.log("SEARCH ", search);
-		axios
+
+		setLoading(true);
+		await axios
 			.request(options)
 			.then(function (response) {
-				console.log("HERE", response.data.results[1].name);
-				setData(response.data.results);
+				console.log("HEEEEY Time", response.data.results[0].recipes[0].name);
+				const results = response.data.results;
+				// results.array.forEach((element) => {
+				// 	element.recipes.forEach((recipe) => {
+				// 		setData(...data, recipe);
+				// 	});
+				// });
 			})
 			.catch(function (error) {
+				setLoading(false);
 				console.error(error);
 			});
-		data.map((recipe, index) => {
-			console.log(index, recipe.name);
-		});
+		setLoading(false);
+
+		// data.map((recipe, index) => {
+		// 	console.log(index, recipe.name);
+		// });
 	};
 
 	return (
@@ -52,15 +97,13 @@ export default function MainScreen() {
 				className="flex flex-col   h-full w-full"
 				behavior="padding"
 			>
-				<View className="flex flex-row justify-center h-[200px] items-end">
-					<Text className={`${styles.MAINTEXT} text-red`}>
-						Search for the recipe you want
-					</Text>
+				<View className="flex flex-row justify-center h-[100px] items-end">
+					<Text className={`${styles.MAINTEXT} text-red`}>Recipe finder </Text>
 				</View>
 				{/* BUTTONS */}
 				<View
-					className="flex flex-col space-y-5 justify-center items-center mt-[150px] h-[150px]
-           			 w-full border"
+					className="flex flex-col space-y-5 justify-center items-center mt-[70px] h-[150px]
+           			 w-full "
 				>
 					<View className="flex-row  bg-gray-200 p-3 space-x-2 w-[350px] mx-5">
 						<MagnifyingGlassIcon
@@ -73,7 +116,7 @@ export default function MainScreen() {
 							value={search}
 							onChangeText={(text) => setSearch(text)}
 							keyboardType="default"
-							placeholder="Find new recipes !"
+							placeholder="Search for the recipe you want"
 							className="text-sm "
 						/>
 					</View>
@@ -91,14 +134,31 @@ export default function MainScreen() {
 				</View>
 				{/* Vertical Scroll MAIN */}
 				<ScrollView
-					className=" flex-row space-x-5 "
 					showsVerticalScrollIndicator={true}
 					contentContainerStyle={{
 						paddingHorizontal: 10,
 						paddingTop: 12,
 					}}
 				>
-					<SearchRow recipes={data} />
+					{loading ? (
+						<AnimatedLoader
+							visible={loading}
+							source={require("../../assets/loader.json")}
+							overlayColor="rgba(66, 245, 191, 0.75)"
+							animationStyle={{
+								width: 100,
+								height: 100,
+								color: "green",
+							}}
+							speed={1}
+						>
+							<Text className="text-white text-md font-bold mt-3">
+								Cooking something Declicous ...
+							</Text>
+						</AnimatedLoader>
+					) : (
+						<SearchRow recipes={data} />
+					)}
 				</ScrollView>
 			</KeyboardAvoidingView>
 		</ImageBackground>
