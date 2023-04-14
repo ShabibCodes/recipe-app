@@ -21,7 +21,7 @@ import SearchRow from "../components/SearchRow";
 
 export default function MainScreen() {
 	const image = "../../assets/images/LoginBackground.png";
-	const [data, setData] = useState({ "": "" });
+	const [data, setData] = useState([""]);
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
 
@@ -61,7 +61,7 @@ export default function MainScreen() {
 		const options = {
 			method: "GET",
 			url: "https://tasty.p.rapidapi.com/recipes/list",
-			params: { from: "0", size: "4", q: "avocado" },
+			params: { from: "0", size: "5", q: "avocado" },
 			headers: {
 				"X-RapidAPI-Key": "9985f9fdb4mshf1a3e10c643c6dap10f203jsnd00492ab6685",
 				"X-RapidAPI-Host": "tasty.p.rapidapi.com",
@@ -71,14 +71,19 @@ export default function MainScreen() {
 		setLoading(true);
 		await axios
 			.request(options)
-			.then(function (response) {
-				console.log("HEEEEY Time", response.data.results[0].recipes[0].name);
-				const results = response.data.results;
-				// results.array.forEach((element) => {
-				// 	element.recipes.forEach((recipe) => {
-				// 		setData(...data, recipe);
-				// 	});
+			.then((res) => {
+				// console.log("HEEEEY Time", res.data.results[0].recipes[0].name);
+
+				const results = res.data.results;
+				// console.log("XXX", results);
+				// results.forEach((element, index) => {
+				// console.log(index, element);
+				setData(results);
+				// element.recipes.forEach((recipe) => {
+				// console.log("zzz", recipe);
 				// });
+				// });
+				// console.log("ZZZZ", data);
 			})
 			.catch(function (error) {
 				setLoading(false);
@@ -87,7 +92,7 @@ export default function MainScreen() {
 		setLoading(false);
 
 		// data.map((recipe, index) => {
-		// 	console.log(index, recipe.name);
+		// 	console.log(index, recipe);
 		// });
 	};
 

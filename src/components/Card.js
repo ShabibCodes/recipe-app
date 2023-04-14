@@ -1,6 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { StarIcon } from "react-native-heroicons/outline";
 
 export default function Card({ recipe }) {
 	const navigation = useNavigation();
@@ -10,16 +11,21 @@ export default function Card({ recipe }) {
 	};
 
 	return (
-		<View className=" flex flex-col w-[25%] h-[90%] items-center mr-5 my-3 px-1 bg-gray-100 shadow-md rounded">
-			<TouchableOpacity onPress={() => recipeDetails()} className="   ">
+		<View  className="card flex flex-col w-64 h-[330px] items-center mr-5 bg-gray-100 shadow-md rounded-md">
+			<TouchableOpacity onPress={() => recipeDetails()}>
 				<Image
 					source={{ uri: recipe.thumbnail_url }}
-					className="w-56 h-52 rounded-lg mb-1 mx-auto mt-2"
+					className="w-56 h-52 rounded-lg mb-1  mt-1"
 				/>
+				<Image />
+				<View className="flex flex-row items-center space-x-4">
+					<StarIcon color="gold" />
+					<Text>{(Math.round(recipe.user_ratings.score * 100) / 100) * 5}</Text>
+				</View>
 
 				{/* NAME - RATING */}
 				<View className="flex-col items-center justify-between my-1 ">
-					<Text className=" text-lg font-bold">{recipe.name}</Text>
+					<Text className=" text-md font-bold">{recipe.name}</Text>
 					<View className="flex-row items-center space-x-1">
 						{/* <StarIcon className="shadow " color="purple" opacity={0.6} /> */}
 						<Text className="text-gray-500 font-bold"> {recipe.id}</Text>
