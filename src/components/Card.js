@@ -8,23 +8,25 @@ export default function Card({ recipe }) {
 	const [rating, setRating] = useState(0.0);
 
 	useEffect(() => {
-		setRating((Math.round(recipe.user_ratings.score * 100) / 100) * 5);
+		setRating((Math.round(recipe.user_ratings.score * 100, 2) / 100) * 5);
 	}, []);
 
 	const recipeDetails = () => {
-		navigation.navigate("Details");
+		navigation.navigate("Details", {
+			recipe: recipe,
+		});
 	};
 
 	return (
-		<View className="card flex flex-col w-64 h-[330px] items-center mr-5 bg-gray-100 shadow-md rounded-md">
+		<View className="card flex flex-col w-64 h-68 items-center mr-5 bg-gray-100 shadow-md rounded-md">
 			<TouchableOpacity onPress={() => recipeDetails()}>
 				<Image
 					source={{ uri: recipe.thumbnail_url }}
-					className="w-56 h-52 rounded-lg mb-1  mt-1"
+					className="w-60 h-52 rounded-lg mx-auto mb-1  mt-1"
 				/>
 				<Image />
-				<View className="flex flex-row items-center space-x-2 ">
-					<StarIcon color="gold" />
+				<View className="flex flex-row items-center text-center space-x-2 ">
+					<StarIcon color={rating > 2.5 ? "gold" : "red"} />
 					<Text>{rating}</Text>
 				</View>
 
@@ -33,10 +35,6 @@ export default function Card({ recipe }) {
 					<Text className=" text-md font-bold tracking-widest">
 						{recipe.name}
 					</Text>
-					<View className="flex-row items-center space-x-1">
-						{/* <StarIcon className="shadow " color="purple" opacity={0.6} /> */}
-						<Text className="text-gray-500 font-bold"> {recipe.id}</Text>
-					</View>
 				</View>
 				{/* Location */}
 				{/* <View className="flex-row items-center justify-around pb-5">

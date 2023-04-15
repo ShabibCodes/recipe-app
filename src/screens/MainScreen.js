@@ -148,11 +148,11 @@ export default function MainScreen() {
 					{loading ? (
 						<AnimatedLoader
 							visible={loading}
-							source={require("../../assets/loader.json")}
+							source={require("../../assets/newLoader.json")}
 							overlayColor="rgba(66, 245, 191, 0.75)"
 							animationStyle={{
-								width: 100,
-								height: 100,
+								width: 400,
+								height: 400,
 								color: "green",
 							}}
 							speed={1}

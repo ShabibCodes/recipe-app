@@ -1,11 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-export default function DetailsScreen() {
-
+export default function DetailsScreen({ route }) {
+	const { recipe } = route.params;
 	return (
 		<View>
-			<Text>DetailsScreen</Text>
+			<Text>{recipe.name}</Text>
 		</View>
 	);
 }
