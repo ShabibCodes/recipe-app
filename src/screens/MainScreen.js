@@ -61,7 +61,7 @@ export default function MainScreen() {
 		const options = {
 			method: "GET",
 			url: "https://tasty.p.rapidapi.com/recipes/list",
-			params: { from: "0", size: "5", q: "avocado" },
+			params: { from: "0", size: "2", q: search },
 			headers: {
 				"X-RapidAPI-Key": "9985f9fdb4mshf1a3e10c643c6dap10f203jsnd00492ab6685",
 				"X-RapidAPI-Host": "tasty.p.rapidapi.com",
