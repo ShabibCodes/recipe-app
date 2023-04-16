@@ -11,13 +11,10 @@ import {
 import styles from "../constants/styles";
 import axios from "axios";
 import { ScrollView } from "react-native";
-import {
-	MagnifyingGlassIcon,
-	AdjustmentsHorizontalIcon,
-} from "react-native-heroicons/solid";
-import AnimatedLoader from "react-native-animated-loader";
+import { MagnifyingGlassIcon } from "react-native-heroicons/solid";
 
 import SearchRow from "../components/SearchRow";
+import Loader from "../components/Loader";
 
 export default function MainScreen() {
 	const image = "../../assets/images/LoginBackground.png";
@@ -146,21 +143,7 @@ export default function MainScreen() {
 					}}
 				>
 					{loading ? (
-						<AnimatedLoader
-							visible={loading}
-							source={require("../../assets/newLoader.json")}
-							overlayColor="rgba(66, 245, 191, 0.75)"
-							animationStyle={{
-								width: 400,
-								height: 400,
-								color: "green",
-							}}
-							speed={1}
-						>
-							<Text className="text-white text-md font-bold mt-3">
-								Cooking something Declicous ...
-							</Text>
-						</AnimatedLoader>
+						<Loader loading={loading} />
 					) : (
 						<SearchRow recipes={data} />
 					)}
