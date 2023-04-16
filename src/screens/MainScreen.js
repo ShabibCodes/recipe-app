@@ -107,7 +107,7 @@ export default function MainScreen() {
 				</View>
 				{/* BUTTONS */}
 				<View
-					className="flex flex-col space-y-5 justify-center items-center mt-[70px] h-[150px]
+					className="flex flex-col space-y-5 justify-center items-center mt-[20px] h-[140px]
            			 w-full "
 				>
 					<View className="flex-row  bg-gray-200 p-3 space-x-2 w-[350px] mx-5">

@@ -26,7 +26,7 @@ export default function Card({ recipe }) {
 				/>
 				<Image />
 				<View className="flex flex-row items-center text-center space-x-2 ">
-					<StarIcon color={rating > 2.5 ? "gold" : "red"} />
+					<StarIcon color={rating > 2.5 ? "#ffd60a" : "red"} />
 					<Text>{rating}</Text>
 				</View>
 

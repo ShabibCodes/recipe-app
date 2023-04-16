@@ -4,6 +4,7 @@ import Card from "./Card";
 import { AdjustmentsHorizontalIcon } from "react-native-heroicons/outline";
 import { TouchableOpacity } from "react-native";
 import Filter from "./Filter";
+import { FlatGrid } from "react-native-super-grid";
 
 const SearchRow = ({ recipes }) => {
 	const [showFilter, setShowFilter] = useState(false);
@@ -49,7 +50,7 @@ const SearchRow = ({ recipes }) => {
 				</View>
 			</View>
 			<ScrollView
-				className="flex flex-row space-x-5 "
+				className="flex-1 flex-wrap -mb-4 max-h-[500px]  space-x-5 "
 				horizontal
 				showsHorizontalScrollIndicator={false}
 				contentContainerStyle={{
