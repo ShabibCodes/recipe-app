@@ -10,7 +10,7 @@ export default function Steps({ instruction, index }) {
 		<View className="bg-[#ffffff] bg-opacity-[10%] rounded-xl  shadow-xl  mt-10 ">
 			<View
 				className="flex flex-row justify-between items-center mb-2 pl-2 py-2 pr-4
-             bg-[#06d6af] rounded-b-[20px] shadow-lg"
+             bg-[#38A3A5] rounded-b-[20px] shadow-lg"
 			>
 				<Text className="text-lg font-[800] text-white ">
 					Step {index + 1}:
