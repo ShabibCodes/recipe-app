@@ -13,6 +13,7 @@ import {
 	ArrowUturnLeftIcon,
 	BookmarkIcon,
 	ClipboardDocumentListIcon,
+	FireIcon,
 } from "react-native-heroicons/solid";
 import Unorderedlist from "react-native-unordered-list";
 
@@ -114,7 +115,7 @@ export default function DetailsScreen({ route }) {
 							</View>
 							<TouchableOpacity
 								className="bg-slate-200 rounded-full px-5 py-2 mr-2 shadow-lg"
-								onPress={() => navURL}
+								onPress={() => navURL()}
 							>
 								<PaperClipIcon color={"#272727"} size={18} />
 							</TouchableOpacity>
@@ -152,7 +153,7 @@ export default function DetailsScreen({ route }) {
 										isOn === "ingredients" ? "bg-[#06d6af]" : "bg-slate-200"
 									} flex flex-row items-center justify-center space-x-2  rounded-full px-5 py-2 shadow-lg `}
 								>
-									<UserIcon
+									<FireIcon
 										color={isOn === "ingredients" ? "white" : "#272727"}
 									/>
 									<Text
