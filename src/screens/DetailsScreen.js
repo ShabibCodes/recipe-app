@@ -6,6 +6,7 @@ import {
 	Linking,
 	SafeAreaView,
 	ImageBackground,
+	useWindowDimensions,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import {
@@ -20,7 +21,9 @@ import {
 	PaperClipIcon,
 	IdentificationIcon,
 	UserIcon,
+	HeartIcon,
 } from "react-native-heroicons/outline";
+import SolidHeart from "react-native-heroicons/solid/HeartIcon";
 import { ScrollView } from "react-native";
 import Steps from "../components/Steps";
 import { useNavigation } from "@react-navigation/native";
@@ -28,19 +31,32 @@ import Ingredients from "../components/Ingredients";
 
 export default function DetailsScreen({ route }) {
 	const image = "../../assets/images/polygon-scatter-haikei.png";
+	const { height, width } = useWindowDimensions();
 
 	const { recipe } = route.params;
 	const navigation = useNavigation();
-
 	const [fav, setFav] = useState(false);
 	const [isOn, setIsOn] = useState("steps");
 
+	// OPEN external URLs
 	const navURL = () => {
 		Linking.openURL(recipe.original_video_url).catch((err) =>
 			console.error("An error occurred", err)
 		);
 	};
 
+	const favIcon = fav ? (
+		<SolidHeart color={"red"} />
+	) : (
+		<HeartIcon color={"white"} />
+	);
+
+	const likeRecipe = () => {
+		setFav(!fav);
+		console.log("HERE ", recipe.name);
+	};
+	console.log(height);
+	// ===== TBD =====
 	// useEffect(() => {}, []);
 	// console.log(
 	// 	"HERE",
@@ -51,50 +67,40 @@ export default function DetailsScreen({ route }) {
 	// recipe.sections[0].components.map((ing, index) => ing.raw_text)
 	// );
 
+	// ===== TO DO =====
+	// make it bounce properly
+	// sticky name happen properly too
 	return (
-		<ImageBackground
-			style={{
-				flex: 1,
-				justifyContent: "center",
-				width: "100%",
-				height: "100%",
-			}}
-			source={require(image)}
-			resizeMode="repeat"
-		>
-			<View className="flex-1 bg-[#38A3A5]">
-				<SafeAreaView />
-
-				<View className="flex flex-row  z-40 items-center px-4 pb-3 justify-between bg-[#38A3A5] w-screen h-7">
+		<View className="flex-1 ">
+			<SafeAreaView className="bg-[#38A3A5]" />
+			<ScrollView
+				bounces={false}
+				showsVerticalScrollIndicator={false}
+				stickyHeaderIndices={[0, 2]}
+			>
+				<View className="flex flex-row  z-40 items-center px-4 pb-2 justify-between bg-[#38A3A5] w-screen h-7">
 					<TouchableOpacity onPress={() => navigation.goBack()}>
 						<ArrowUturnLeftIcon color={"#ffffff"} scale={1} />
 					</TouchableOpacity>
-					<TouchableOpacity>
-						<BookmarkIcon
-							onPress={() => setFav(!fav)}
-							color={fav ? "gold" : "white"}
-						/>
+					<TouchableOpacity onPress={() => likeRecipe()}>
+						{favIcon}
 					</TouchableOpacity>
 				</View>
 				<Image
 					source={{ uri: recipe.thumbnail_url }}
-					className="w-screen h-64 rounded-sm mx-auto py-1  "
+					className="w-screen h-96 rounded-sm mx-auto py-2   "
 				/>
 
-				<View className="flex flex-col pt-3 px-2 bg-white ">
+				<View
+					className={` bottom-7  flex flex-col pt-4 px-2 bg-white  shadow-md rounded-t-[25px]`}
+				>
 					<Text className="text-xl font-bold">{recipe.name}</Text>
-					<Text>{}</Text>
 
 					{/* Secondary info */}
-					<ScrollView
-						contentContainerStyle={{
-							justifyContent: "space-between",
-							alignContent: "space-between",
-						}}
-					>
+					<View>
 						<View
-							className="flex flex-row  mt-3 justify-between
-				pb-4  border-gray-300  z-10 shadow-sm"
+							className="flex flex-row  mt-3 justify-between 
+							pb-4  border-gray-300  z-10 shadow-sm"
 						>
 							<View className="flex flex-row items-center justify-center space-x-2 bg-slate-200 rounded-full px-5 py-2 shadow-lg z-40">
 								<IdentificationIcon color={"#272727"} />
@@ -115,8 +121,8 @@ export default function DetailsScreen({ route }) {
 						</View>
 						{/* SECOND ROW */}
 						<View
-							className="flex flex-row  mt-3 justify-evenly
-				pb-4 overflow-hidden border-gray-300 border-b-[0.3px] z-10 shadow-sm"
+							className="flex flex-row  justify-evenly
+							pb-4 overflow-hidden border-gray-300 border-b-[0.3px] shadow-sm"
 						>
 							<TouchableOpacity onPress={() => setIsOn("steps")}>
 								<View
@@ -161,21 +167,23 @@ export default function DetailsScreen({ route }) {
 								</View>
 							</TouchableOpacity>
 						</View>
-					</ScrollView>
+					</View>
 					{/*  */}
 				</View>
 				<ScrollView
-					className="bg-gray-100"
+					className="bg-slate-100 bottom-8"
 					bounces={true}
 					showsVerticalScrollIndicator={true}
 					contentContainerStyle={{
 						paddingHorizontal: 10,
-						paddingTop: 12,
+						paddingTop: 2,
 					}}
 				>
-					<View className={` flex-col space-y-5 ml-1 mr-3`}>
+					<View>
 						{/* STEPS */}
-						<View className={`${isOn === "steps" ? "flex" : "hidden"}`}>
+						<View
+							className={`${isOn === "steps" ? "flex" : "hidden"} ml-1 mr-3`}
+						>
 							{recipe.instructions.map((inst, i) => (
 								<Steps instruction={inst} key={i} index={i} />
 							))}
@@ -186,7 +194,11 @@ export default function DetailsScreen({ route }) {
 							</View>
 						</View>
 						{/* Ingredients */}
-						<View className={`${isOn === "ingredients" ? "flex" : "hidden"}`}>
+						<View
+							className={`${
+								isOn === "ingredients" ? "" : "hidden"
+							} flex-row flex-wrap`}
+						>
 							{recipe.sections[0].components.map((ing) => (
 								<Ingredients ingredients={ing} />
 							))}
@@ -194,7 +206,7 @@ export default function DetailsScreen({ route }) {
 						{/* Measurements  */}
 					</View>
 				</ScrollView>
-			</View>
-		</ImageBackground>
+			</ScrollView>
+		</View>
 	);
 }

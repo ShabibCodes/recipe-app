@@ -50,7 +50,7 @@ const SearchRow = ({ recipes }) => {
 				</View>
 			</View>
 			<ScrollView
-				className="flex-1 flex-wrap -mb-4 max-h-[500px]  space-x-5 "
+				className="flex-1 flex-wrap -mb-4 max-h-[500px]  space-x-5 shadow-md"
 				horizontal
 				showsHorizontalScrollIndicator={false}
 				contentContainerStyle={{

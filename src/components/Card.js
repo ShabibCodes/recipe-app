@@ -18,7 +18,7 @@ export default function Card({ recipe }) {
 	};
 
 	return (
-		<View className="card flex flex-col w-64 h-68 items-center mr-5 bg-gray-100 shadow-md rounded-md">
+		<View className="card flex flex-col w-64 h-68 items-center mr-5 bg-gray-100 shadow-md overflow-auto rounded-md">
 			<TouchableOpacity onPress={() => recipeDetails()}>
 				<Image
 					source={{ uri: recipe.thumbnail_url }}

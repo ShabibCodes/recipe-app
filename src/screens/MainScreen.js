@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	TextInput,
 	SafeAreaView,
+	Image,
 } from "react-native";
 import styles from "../constants/styles";
 import axios from "axios";
@@ -18,6 +19,7 @@ import Loader from "../components/Loader";
 
 export default function MainScreen() {
 	const image = "../../assets/images/LoginBackground.png";
+	const logo = "../../assets/images/logo2.png";
 	const [data, setData] = useState([""]);
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -86,7 +88,11 @@ export default function MainScreen() {
 				setLoading(false);
 				console.error(error);
 			});
-		setLoading(false);
+		// Enjoy the loader :D
+		setTimeout(async () => {
+			setLoading(false);
+			console.log("WAIIT");
+		}, 3000);
 
 		// data.map((recipe, index) => {
 		// 	console.log(index, recipe);
@@ -96,11 +102,12 @@ export default function MainScreen() {
 	return (
 		<ImageBackground source={require(image)}>
 			<KeyboardAvoidingView
-				className="flex flex-col   h-full w-full"
+				className="flex flex-col h-full w-full"
 				behavior="padding"
 			>
-				<View className="flex flex-row justify-center h-[100px] items-end">
-					<Text className={`${styles.MAINTEXT} text-red`}>Recipe finder </Text>
+				<View className="flex flex-col justify-center items-center mt-12 ">
+					<Image className="w-60 h-60" source={require(logo)}></Image>
+					{/* <Text className={`${styles.MAINTEXT} text-red`}>Recipe finder </Text> */}
 				</View>
 				{/* BUTTONS */}
 				<View
