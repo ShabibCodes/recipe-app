@@ -73,7 +73,7 @@ export default function DetailsScreen({ route }) {
 	// sticky name happen properly too
 	return (
 		<View className="flex-1 ">
-			<SafeAreaView className="bg-[#38A3A5]" />
+			<SafeAreaView className="bg-[#38A3A5] " />
 			<ScrollView
 				bounces={false}
 				showsVerticalScrollIndicator={false}
@@ -93,7 +93,7 @@ export default function DetailsScreen({ route }) {
 				/>
 
 				<View
-					className={` bottom-7  flex flex-col pt-4 px-2 bg-white  shadow-md rounded-t-[25px]`}
+					className={` flex -top-7 flex-col pt-4 px-2 bg-white  shadow-md rounded-t-[25px]`}
 				>
 					<Text className="text-xl font-bold">{recipe.name}</Text>
 
@@ -172,7 +172,7 @@ export default function DetailsScreen({ route }) {
 					{/*  */}
 				</View>
 				<ScrollView
-					className="bg-slate-100 bottom-8"
+					className="bg-white bottom-8"
 					bounces={true}
 					showsVerticalScrollIndicator={true}
 					contentContainerStyle={{
