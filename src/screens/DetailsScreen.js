@@ -14,6 +14,7 @@ import {
 	BookmarkIcon,
 	ClipboardDocumentListIcon,
 	FireIcon,
+	ReceiptRefundIcon,
 } from "react-native-heroicons/solid";
 import Unorderedlist from "react-native-unordered-list";
 
@@ -38,6 +39,7 @@ export default function DetailsScreen({ route }) {
 	const navigation = useNavigation();
 	const [fav, setFav] = useState(false);
 	const [isOn, setIsOn] = useState("steps");
+	const [favList, setFavList] = useState([]);
 
 	// OPEN external URLs
 	const navURL = () => {
@@ -54,9 +56,16 @@ export default function DetailsScreen({ route }) {
 
 	const likeRecipe = () => {
 		setFav(!fav);
-		console.log("HERE ", recipe.name);
+		// console.log("HERE ", recipe.id);
+
+		setFavList([...favList, recipe.id]);
+		favList.includes(recipe.id)
+			? setFavList(favList.filter((id) => id !== recipe.id))
+			: setFavList([...favList, recipe.id]);
+
+		console.log("HEREs ", favList);
 	};
-	console.log(height);
+
 	// ===== TBD =====
 	// useEffect(() => {}, []);
 	// console.log(
@@ -74,6 +83,7 @@ export default function DetailsScreen({ route }) {
 	return (
 		<View className="flex-1 ">
 			<SafeAreaView className="bg-[#38A3A5] " />
+
 			<ScrollView
 				bounces={false}
 				showsVerticalScrollIndicator={false}

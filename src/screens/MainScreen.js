@@ -13,11 +13,14 @@ import styles from "../constants/styles";
 import axios from "axios";
 import { ScrollView } from "react-native";
 import { MagnifyingGlassIcon } from "react-native-heroicons/solid";
+import { HeartIcon } from "react-native-heroicons/outline";
 
 import SearchRow from "../components/SearchRow";
 import Loader from "../components/Loader";
+import { useNavigation } from "@react-navigation/native";
 
 export default function MainScreen() {
+	const navigation = useNavigation();
 	const image = "../../assets/images/LoginBackground.png";
 	const logo = "../../assets/images/logo2.png";
 	const [data, setData] = useState([""]);
@@ -155,6 +158,11 @@ export default function MainScreen() {
 						<SearchRow recipes={data} />
 					)}
 				</ScrollView>
+				<View className="flex flex-col items-center mb-10">
+					<TouchableOpacity onPress={() => navigation.replace("Favourite")}>
+						<HeartIcon color={"gray"} size={35} />
+					</TouchableOpacity>
+				</View>
 			</KeyboardAvoidingView>
 		</ImageBackground>
 	);

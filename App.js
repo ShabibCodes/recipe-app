@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import MainScreen from "./src/screens/MainScreen";
 import DetailsScreen from "./src/screens/DetailsScreen";
+import FavScreen from "./src/screens/FavScreen";
 
 export default function App() {
 	const Stack = createNativeStackNavigator();
@@ -23,6 +24,11 @@ export default function App() {
 				<Stack.Screen
 					name="Details"
 					component={DetailsScreen}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="Favourite"
+					component={FavScreen}
 					options={{ headerShown: false }}
 				/>
 			</Stack.Navigator>
