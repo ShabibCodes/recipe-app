@@ -159,7 +159,7 @@ export default function MainScreen() {
 					)}
 				</ScrollView>
 				<View className="flex flex-col items-center mb-10">
-					<TouchableOpacity onPress={() => navigation.replace("Favourite")}>
+					<TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
 						<HeartIcon color={"gray"} size={35} />
 					</TouchableOpacity>
 				</View>

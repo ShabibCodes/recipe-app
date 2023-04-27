@@ -3,7 +3,11 @@ import React from "react";
 
 export default function FavCard() {
 	return (
-		<View className="flex flex-row  items-center mx-10 bg-white border-[0.5px]">
+		<View
+			className="flex flex-row space-x-3 w-screen items-center
+		py-6 px-2 bg-gray-100 border-[0.2px]"
+		>
+			<Text>IMAGE</Text>
 			<Text>FavCard</Text>
 		</View>
 	);

@@ -9,6 +9,7 @@ import React from "react";
 import { ArrowUturnLeftIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import FavCard from "../components/FavCard";
+import FavRow from "../components/FavRow";
 
 export default function FavScreen() {
 	const navigation = useNavigation();
@@ -25,8 +26,8 @@ export default function FavScreen() {
 					</TouchableOpacity>
 				</View>
 			</SafeAreaView>
-			<ScrollView>
-				<FavCard />
+			<ScrollView className="h-full">
+				<FavRow />
 			</ScrollView>
 		</View>
 	);

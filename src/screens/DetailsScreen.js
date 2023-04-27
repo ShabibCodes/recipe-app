@@ -30,14 +30,14 @@ import { ScrollView } from "react-native";
 import Steps from "../components/Steps";
 import { useNavigation } from "@react-navigation/native";
 import Ingredients from "../components/Ingredients";
+import DetailHeader from "../components/DetailHeader";
 
 export default function DetailsScreen({ route }) {
 	const image = "../../assets/images/polygon-scatter-haikei.png";
 	const { height, width } = useWindowDimensions();
-
 	const { recipe } = route.params;
+
 	const navigation = useNavigation();
-	const [fav, setFav] = useState(false);
 	const [isOn, setIsOn] = useState("steps");
 	const [favList, setFavList] = useState([]);
 
@@ -48,22 +48,32 @@ export default function DetailsScreen({ route }) {
 		);
 	};
 
-	const favIcon = fav ? (
-		<SolidHeart color={"red"} />
-	) : (
-		<HeartIcon color={"white"} />
-	);
-
 	const likeRecipe = () => {
 		setFav(!fav);
 		// console.log("HERE ", recipe.id);
 
-		setFavList([...favList, recipe.id]);
+		// read
+
+		// localStorage.setItem("userData", JSON.stringify([1000]));
+
+		// const favList = localStorage.getItem("userData");
+		// console.log("XXX", favList);
+
 		favList.includes(recipe.id)
 			? setFavList(favList.filter((id) => id !== recipe.id))
 			: setFavList([...favList, recipe.id]);
 
+		// localStorage.setItem("userData", JSON.stringify(favList));
+		// favList = localStorage.getItem("userData");
 		console.log("HEREs ", favList);
+	};
+
+	const handleID = (id) => {
+		// favList.includes(id)
+		// 	? setFavList(favList.filter((id) => id !== id))
+		// 	: setFavList([...favList, id]);
+		setFavList([...favList, id]);
+		console.log("XXXX  ", favList);
 	};
 
 	// ===== TBD =====
@@ -89,14 +99,7 @@ export default function DetailsScreen({ route }) {
 				showsVerticalScrollIndicator={false}
 				stickyHeaderIndices={[0, 2]}
 			>
-				<View className="flex flex-row  z-40 items-center px-4 pb-2 justify-between bg-[#38A3A5] w-screen h-7">
-					<TouchableOpacity onPress={() => navigation.goBack()}>
-						<ArrowUturnLeftIcon color={"#ffffff"} scale={1} />
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => likeRecipe()}>
-						{favIcon}
-					</TouchableOpacity>
-				</View>
+				<DetailHeader handleID={handleID} id={recipe.id} />
 				<Image
 					source={{ uri: recipe.thumbnail_url }}
 					className="w-screen h-96 rounded-sm mx-auto py-2   "
@@ -139,7 +142,7 @@ export default function DetailsScreen({ route }) {
 								<View
 									className={`${
 										isOn === "steps" ? "bg-[#06d6af]" : "bg-slate-200"
-									} flex flex-row items-center justify-center space-x-2  rounded-full px-5 py-2 shadow-lg z-40`}
+									} flex flex-row items-center justify-center space-x-2  rounded-xl px-5 py-2 shadow-lg z-40`}
 								>
 									<ClipboardDocumentListIcon
 										color={isOn === "steps" ? "white" : "#272727"}
@@ -161,7 +164,7 @@ export default function DetailsScreen({ route }) {
 								<View
 									className={`${
 										isOn === "ingredients" ? "bg-[#06d6af]" : "bg-slate-200"
-									} flex flex-row items-center justify-center space-x-2  rounded-full px-5 py-2 shadow-lg `}
+									} flex flex-row items-center justify-center space-x-2  rounded-xl px-5 py-2 shadow-lg `}
 								>
 									<FireIcon
 										color={isOn === "ingredients" ? "white" : "#272727"}
