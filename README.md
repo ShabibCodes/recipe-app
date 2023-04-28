@@ -57,4 +57,9 @@ and it should have a well-designed and maintainable codebase, incorporating good
 | <img width="430" alt="Screen Shot 2023-04-28 at 6 37 31 AM" src="https://user-images.githubusercontent.com/91342432/235048568-b9df79f8-154e-4ee8-8b74-01944f1ac1bc.png"> | <img width="459" alt="Screen Shot 2023-04-28 at 6 39 07 AM" src="https://user-images.githubusercontent.com/91342432/235048750-3e08e438-381c-4196-8df1-d2e3f43c2f6f.png"> | <img width="455" alt="Screen Shot 2023-04-28 at 6 40 01 AM" src="https://user-images.githubusercontent.com/91342432/235048848-4c17b702-2cda-45c4-baf1-8404ce536e61.png"> |
 
 
+<img width="422" alt="Screen Shot 2023-04-28 at 6 41 29 AM" src="https://user-images.githubusercontent.com/91342432/235049014-91bc4eb3-cdff-4acc-8e29-27e964c7b3a5.png">
+<img width="514" alt="Screen Shot 2023-04-28 at 6 42 21 AM" src="https://user-images.githubusercontent.com/91342432/235049085-7b1dcc01-22ca-4ed1-a121-dd7f2305dba8.png">
+
+<img width="478" alt="Screen Shot 2023-04-28 at 6 42 37 AM" src="https://user-images.githubusercontent.com/91342432/235049100-ce5300c2-a50f-448b-8693-252e4e4c827a.png">
+
 
