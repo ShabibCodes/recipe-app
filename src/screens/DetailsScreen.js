@@ -15,6 +15,7 @@ import {
 	ClipboardDocumentListIcon,
 	FireIcon,
 	ReceiptRefundIcon,
+	StarIcon,
 } from "react-native-heroicons/solid";
 import Unorderedlist from "react-native-unordered-list";
 
@@ -25,6 +26,7 @@ import {
 	UserIcon,
 	HeartIcon,
 } from "react-native-heroicons/outline";
+
 import SolidHeart from "react-native-heroicons/solid/HeartIcon";
 import { ScrollView } from "react-native";
 import Steps from "../components/Steps";
@@ -108,7 +110,15 @@ export default function DetailsScreen({ route }) {
 				<View
 					className={` flex -top-7 flex-col pt-4 px-2 bg-white  shadow-md rounded-t-[25px]`}
 				>
-					<Text className="text-xl font-bold">{recipe.name}</Text>
+					<View className="flex flex-row justify-between pr-4 pb-2 items-center space-x-10 text-center">
+						<Text className="text-xl font-bold">{recipe.name}</Text>
+						<View className="flex flex-row items-center justify-center space-x-1 ">
+							<StarIcon color={"gold"} />
+							<Text className="text-slate-500">
+								{(Math.round(recipe.user_ratings.score * 100, 2) / 100) * 5}
+							</Text>
+						</View>
+					</View>
 
 					{/* Secondary info */}
 					<View>

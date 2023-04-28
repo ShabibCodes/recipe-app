@@ -32,11 +32,7 @@ const SearchRow = ({ recipes }) => {
 			<View className="px-3 py-2 white shadow ">
 				<View className="flex-row justify-between px-1 ">
 					<Text className="text-sm italic text-gray-500">
-						{n === 0 ? (
-							"try different keywords"
-						) : (
-							<Text>Search result .. ({n})</Text>
-						)}
+						{n === 0 ? "" : <Text>Search result .. ({n})</Text>}
 					</Text>
 					<View className={`${showFilter ? "flex" : "hidden"}`}>
 						<Filter />
