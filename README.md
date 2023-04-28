@@ -43,7 +43,7 @@ and it should have a well-designed and maintainable codebase, incorporating good
 ### Contact information
 
 <div align="center">
-  <a href="mailto:ahmedfouadali1213@gmail.com">
+  <a href="mailto:aldawsarishabib@gmail.com">
     <img src="https://img.shields.io/badge/Email-aldawsarishabib%40gmail.com-orange?style=for-the-badge&logo=gmail"/>
   </a>&nbsp;&nbsp;
   <a https://www.linkedin.com/in/shabibaldawsari/">
