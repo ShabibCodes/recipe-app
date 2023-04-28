@@ -1,6 +1,6 @@
 # Okoul Recipes Challenge 
 
-This marks my participation on the Okoul Recipe Flutter Challenge. The challenge was posted to challenge Flutter developer to challenge themselves. 
+This marks my participation on the Okoul Recipe Flutter Challenge. The challenge was posted to encourage Flutter developers to challenge themselves. 
 However, since I am currently learning React Native, I decided to challenge myself and do it using React Native. 
 
 The application currently is 80% done. I upcoming commits will deliver the reset of the features
